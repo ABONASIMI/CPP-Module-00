@@ -6,13 +6,14 @@
 /*   By: mnasimi <mnasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 15:39:58 by mnasimi           #+#    #+#             */
-/*   Updated: 2026/09/25 15:39:59 by mnasimi          ###   ########.fr       */
+/*   Updated: 2026/09/25 15:46:33 by mnasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
+#include <iostream>
 #include <string>
 
 class Contact

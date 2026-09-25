@@ -1,40 +1,69 @@
-
-
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <iostream>
+#include <string>
 
-
-int main(void)
+static bool isEmpty(const std::string &value)
 {
-	PhoneBook 	PhoneBook;
-	bool		run = true;
-	std::string	command;
+	return value.find_first_not_of(" \t\r\n") == std::string::npos;
+}
 
-	PhoneBook.search_contact();
-	std::cout << "\033[33m$>\033[0m";
-	while (run && std::getline(std::cin, command))
+static bool readField(const std::string &message, std::string &value)
+{
+	while (true)
 	{
-		if (std::cin.eof() == true)
-		{
-			std::cout << "You Pressed ^D. Exiting phonebook now." << std::endl;
-			exit(0);
-		}
-		else if (command.compare("SEARCH") == 0)
-			PhoneBook.search_contact();
-		else if (command.compare("EXIT") == 0)
-		{
-			std::cout << "\033[34mHope i served you well. Good Bye.\033[0m" << std::endl;
-			run = false;
-			continue ;
-		}
-		command.clear();
-		PhoneBook.search_contact();
-		std::cout << "\033[33m$>\033[0m";
+		std::cout << message << std::endl;
+		if (!std::getline(std::cin, value))
+			return false;
+		if (!isEmpty(value))
+			return true;
+		std::cout << "Field cannot be empty." << std::endl;
 	}
-	if (run)
+}
+
+static bool addContact(PhoneBook &phoneBook)
+{
+	Contact contact;
+	std::string value;
+
+	if (!readField("First name:", value))
+		return false;
+	contact.setFirstName(value);
+	if (!readField("Last name:", value))
+		return false;
+	contact.setLastName(value);
+	if (!readField("Nickname:", value))
+		return false;
+	contact.setNickName(value);
+	if (!readField("Phone number:", value))
+		return false;
+	contact.setPhoneNumber(value);
+	if (!readField("Darkest secret:", value))
+		return false;
+	contact.setDarkestSecret(value);
+	phoneBook.addContact(contact);
+	return true;
+}
+
+int main()
+{
+	PhoneBook phoneBook;
+	std::string command;
+
+	while (true)
 	{
-		std::cout << "You pressed ^D, exiting now." << command << std::endl
-		<< "\033[34mHope i served you well. Good Bye.\033[0m" << std::endl;
+		std::cout << "Enter command: ADD, SEARCH or EXIT" << std::endl;
+		if (!std::getline(std::cin, command))
+			break;
+		if (command == "ADD")
+		{
+			if (!addContact(phoneBook))
+				break;
+		}
+		else if (command == "SEARCH")
+			phoneBook.searchContact();
+		else if (command == "EXIT")
+			break;
 	}
-	return (0);
+	return 0;
 }

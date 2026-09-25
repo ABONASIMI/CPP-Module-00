@@ -1,21 +1,20 @@
-#ifndef PHONE_BOOK_HPP
-#define PHONE_BOOK_HPP
-
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <cstdlib>
 
-class PhoneBook {
+class PhoneBook
+{
 private:
-    Contact contact[8];
-    int nb_contact;
-public :
-    PhoneBook();
-    void add_contact(Contact c);
-    void search_contact();
+	Contact	contacts[8];
+	int		count;
+	int		next;
+
+public:
+	PhoneBook();
+
+	void	addContact(const Contact &contact);
+	void	searchContact() const;
 };
 
 #endif

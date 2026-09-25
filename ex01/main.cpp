@@ -6,14 +6,12 @@
 /*   By: mnasimi <mnasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 15:40:01 by mnasimi           #+#    #+#             */
-/*   Updated: 2026/09/25 15:40:02 by mnasimi          ###   ########.fr       */
+/*   Updated: 2026/09/25 15:46:47 by mnasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
-#include <iostream>
-#include <string>
 
 static bool isEmpty(const std::string &value)
 {
